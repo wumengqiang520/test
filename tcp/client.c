@@ -45,20 +45,19 @@ int main (int argc,char *argv[])
 		addrInfo,sizeof(addrInfo)));
 
 	char msgbuf[SIZE];
-	bzero(msgbuf,sizeof(msgbuf));
 	/*收发消息*/
 	while(1) {
+				bzero(msgbuf,sizeof(msgbuf));
 				printf("请输入你想输入的消息:");
-				fgets(msgbuf,sizeof(msgbuf),stdin);
+				scanf("%s",msgbuf);
 				write(sockfd,msgbuf,strlen(msgbuf));
 				if(strncmp(msgbuf,"bye",3) == 0) {
-
+							
 						break;
 				}
 				bzero(msgbuf,strlen(msgbuf));
 				read(sockfd,msgbuf,sizeof(msgbuf));
 				printf("接受到消息:%s\n",msgbuf);
-				bzero(msgbuf,sizeof(msgbuf));
 	}
 	close(sockfd);
 	return 0;

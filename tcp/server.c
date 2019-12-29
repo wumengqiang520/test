@@ -64,17 +64,17 @@ int main(int argc,char *argv[])
 	char msgBuf[SIZE];
 	bzero(msgBuf,sizeof(msgBuf));
 	while(1) {
+			bzero(msgBuf,sizeof(msgBuf));
 			read(sockcon,msgBuf,sizeof(msgBuf));
 			printf("接收到消息:%s\n",msgBuf);
 			bzero(msgBuf,sizeof(msgBuf));
 			printf("请输入你想输入的消息:");
-			fgets(msgBuf,sizeof(msgBuf),stdin);
-			if(strncpy(msgBuf,"bye",3) == 0) {
+			scanf("%s",msgBuf);
+			write(sockcon,msgBuf,strlen(msgBuf));
+			if(strncmp(msgBuf,"bye",3) == 0) {
 
 					break;
 			}
-			write(sockcon,msgBuf,strlen(msgBuf));
-			bzero(msgBuf,strlen(msgBuf));			
 	}
 	close(sockcon);
 	return 0;

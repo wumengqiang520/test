@@ -11,7 +11,6 @@
 
 int main (int argc,char *argv[]) 
 {
-	//nihao
 	if(argc != 3) {
 
 			printf("输入的参数有误！！！请输入服务器的IP和端口号\n");
